@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree Program</title>
+    <link rel="stylesheet" href="backstyle.css"> <!--link css-->
+</head>
+<body>
+    <script src="general.js"></script> <!--link js-->
+    <header class="nav-bar">
+        <nav class="nav-title"> Family Tree Builder</nav>
+    </header>
+
+    <div class="container">
+        <button id="addGenerationButton">Add Generation</button>
+        <div id="textBoxContainer"></div>
+      </div>
+      
+      <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const addTextBoxesBtn = document.getElementById("addGenerationButton");
+        const textBoxContainer = document.getElementById("textBoxContainer");
+      
+        let lineContainers = []; // To store line containers
+      
+        addTextBoxesBtn.addEventListener("click", function() {
+          const numPeople = parseInt(prompt("Enter the number of people:"));
+      
+          if (!isNaN(numPeople) && numPeople > 0) {
+            const newLineContainer = document.createElement("div");
+            newLineContainer.classList.add("line-container");
+      
+            for (let i = 0; i < numPeople; i++) {
+              const textBox = document.createElement("input");
+              textBox.type = "text";
+              textBox.placeholder = "Name";
+              textBox.classList.add("textbox");
+              newLineContainer.appendChild(textBox);
+            }
+      
+            lineContainers.push(newLineContainer);
+            updateTextBoxContainer();
+          } else {
+            alert("Enter a valid number of people.");
+          }
+        });
+      
+        function updateTextBoxContainer() {
+          textBoxContainer.innerHTML = "";
+          for (const lineContainer of lineContainers) {
+            textBoxContainer.appendChild(lineContainer);
+          }
+        }
+      });
+      </script>
+      
+</body>
+</html>
